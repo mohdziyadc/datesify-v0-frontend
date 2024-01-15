@@ -15,7 +15,7 @@ const ProductPreview = ({
     <div>
       <Thumbnail thumbnail={thumbnail} size="full" isFeatured={isFeatured} />
       <div className="flex txt-compact-medium mt-4 justify-between">
-        <Text className="text-ui-fg-subtle">{title}</Text>
+        <Text className="text-primary-foreground font-bold">{title}</Text>
         <div className="flex items-center gap-x-2">
           {price ? (
             <>
@@ -25,7 +25,7 @@ const ProductPreview = ({
                 </Text>
               )}
               <Text
-                className={clsx("text-ui-fg-muted", {
+                className={clsx("text-secondary", {
                   "text-ui-fg-interactive": price.price_type === "sale",
                 })}
               >

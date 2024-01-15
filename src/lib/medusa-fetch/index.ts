@@ -46,7 +46,6 @@ export default async function medusaRequest(
     const nextPage = offset + limit
 
     body.nextPage = body.count > nextPage ? nextPage : null
-
     return {
       status: result.status,
       ok: result.ok,

@@ -22,7 +22,7 @@ const CartDropdown = () => {
       <Popover className="relative h-full">
         <Popover.Button className="h-full">
           <Link
-            className="hover:text-ui-fg-base"
+            className="hover:text-ui-fg-base text-base"
             href="/cart"
           >{`Cart (${totalItems})`}</Link>
         </Popover.Button>

@@ -161,7 +161,6 @@ export async function getCollectionsList(
     .catch((err) => {
       throw err
     })
-
   return {
     collections,
     count,

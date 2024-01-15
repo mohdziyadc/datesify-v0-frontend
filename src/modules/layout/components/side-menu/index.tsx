@@ -1,9 +1,10 @@
 import Link from "next/link"
 import { Fragment } from "react"
 import { Popover, Transition } from "@headlessui/react"
-import { XMark, ArrowRightMini } from "@medusajs/icons"
+import { XMark, ArrowRightMini, BarsThree } from "@medusajs/icons"
 import { Text, clx, useToggleState } from "@medusajs/ui"
 import CountrySelect from "../country-select"
+import { MenuIcon } from "lucide-react"
 
 const SideMenuItems = {
   Home: "/",
@@ -29,7 +30,7 @@ const SideMenu = ({ searchModalOpen }: { searchModalOpen: () => void }) => {
             <>
               <div className="relative flex h-full">
                 <Popover.Button className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base">
-                  Menu
+                  <MenuIcon className="h-6 w-6" />
                 </Popover.Button>
               </div>
 
@@ -95,7 +96,7 @@ const SideMenu = ({ searchModalOpen }: { searchModalOpen: () => void }) => {
                         />
                       </div>
                       <Text className="flex justify-between txt-compact-small">
-                        © {new Date().getFullYear()} Medusa Store. All rights
+                        © {new Date().getFullYear()} Datesify Store. All rights
                         reserved.
                       </Text>
                     </div>

@@ -20,7 +20,10 @@ const DesktopSearchModal = ({
 }: DesktopSearchModalProps) => {
   return (
     <>
-      <button onClick={open} className="flex items-center gap-x-2 h-full">
+      <button
+        onClick={open}
+        className="flex text-base items-center gap-x-2 h-full"
+      >
         Search
       </button>
 
