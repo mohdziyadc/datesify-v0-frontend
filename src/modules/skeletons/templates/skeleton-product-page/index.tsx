@@ -5,7 +5,7 @@ import SkeletonButton from "@modules/skeletons/components/skeleton-button"
 const SkeletonProductPage = () => {
   return (
     <div>
-      <div className="content-container flex flex-col small:flex-row small:items-start py-6 relative animate-pulse">
+      <div className="content-container flex flex-col small:flex-row small:items-start py-6 relative bg-neutral-200 animate-pulse">
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
           <div id="product-info">
             <div className="flex flex-col gap-y-4 lg:max-w-[500px] mx-auto">
