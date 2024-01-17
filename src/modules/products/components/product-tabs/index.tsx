@@ -5,8 +5,10 @@ import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
 import { ProgressAccordion, Text } from "@medusajs/ui"
 import clsx from "clsx"
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import Accordion from "./accordion"
+import ChevronDown from "@modules/common/icons/chevron-down"
+import { ChevronUp } from "lucide-react"
 
 type ProductTabsProps = {
   product: PricedProduct
@@ -26,6 +28,12 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     ]
   }, [product])
 
+  const [activeTab, setActiveTab] = useState<number>(-1)
+
+  const handleDropdown = (index: number) => {
+    setActiveTab(activeTab === index ? -1 : index)
+  }
+
   return (
     <div className="w-full">
       <Accordion type="multiple">
@@ -35,6 +43,10 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
             title={tab.label}
             headingSize="medium"
             value={tab.label}
+            // customTrigger={activeTab === i ? <ChevronUp/> : <ChevronDown/>}
+            // onClick={() => handleDropdown(i)}
+           
+           
           >
             {tab.component}
           </Accordion.Item>
