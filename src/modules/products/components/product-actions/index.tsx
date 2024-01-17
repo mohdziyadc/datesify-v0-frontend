@@ -7,8 +7,10 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import { Button } from "@medusajs/ui"
 import Divider from "@modules/common/components/divider"
 import OptionSelect from "@modules/products/components/option-select"
+import { useMutation } from "@tanstack/react-query"
 import clsx from "clsx"
-import React, { useMemo } from "react"
+import { Loader2 } from "lucide-react"
+import React, { useMemo, useState } from "react"
 
 type ProductActionsProps = {
   product: PricedProduct
@@ -19,12 +21,36 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
     useProductActions()
 
   const price = useProductPrice({ id: product.id!, variantId: variant?.id })
+  const [loading, setLoading] = useState(false)
 
   const selectedPrice = useMemo(() => {
     const { variantPrice, cheapestPrice } = price
 
     return variantPrice || cheapestPrice || null
   }, [price])
+
+  /**
+   * This is how u update state when a synchronous function needs to be run.
+   * Here that synchronous function is addToCart()
+   */
+  const addProductToCart = async () => {
+
+    try {
+      setLoading(true)
+      await new Promise<void>((resolve) => {
+        //mahn this was hard to figure out
+        addToCart()
+        setTimeout(() => {
+          resolve()
+        }, 2500)
+      })
+    } catch (e) {
+      console.log("Error: " + e)
+    } finally {
+      setLoading(false)
+    }
+
+  }
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -76,16 +102,16 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
       )}
 
       <Button
-        onClick={addToCart}
+        onClick={addProductToCart}
         disabled={!inStock || !variant}
         variant="primary"
         className="w-full h-10"
       >
-        {!inStock
+        {!loading ? !inStock
           ? "Out of stock"
           : !variant
-          ? "Select variant"
-          : "Add to cart"}
+            ? "Select variant"
+            : "Add to cart" : <Loader2 className="h-6 w-6 animate-spin" />}
       </Button>
     </div>
   )
