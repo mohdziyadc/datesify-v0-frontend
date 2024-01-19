@@ -29,7 +29,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   }, [])
   return (
     <ProductProvider product={product}>
-      <div className="content-container flex flex-col small:flex-row small:items-start py-6 relative">
+      <div className="content-container flex flex-col small:flex-row small:items-start py-6 px-6 relative">
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
           <ProductInfo product={product} />
           <ProductTabs product={product} />
@@ -45,7 +45,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
           <ProductActions product={product} />
         </div>
       </div>
-      <div className="content-container my-16 px-6 small:px-8 small:my-32">
+      <div className="content-container my-16  px-6 pb-16 small:px-8 small:my-32">
         <RelatedProducts product={product} />
       </div>
       <MobileActions product={product} show={!inView} />

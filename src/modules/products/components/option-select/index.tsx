@@ -41,7 +41,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
             // </button>
             <Button className={clsx("px-6 py-4 bg-secondary  active:opacity-100 outline outline-2 outline-transparent text-primary hover:bg-secondary",
               {
-                "outline-2  bg-white transition-transform scale-110 opacity-100 outline-slate-950": v === current
+                "outline-2  bg-white transition-transform scale-110 opacity-100 outline-yellow-400": v === current
               })}
               key={v}
               onClick={() => updateOption({ [option.id]: v }
