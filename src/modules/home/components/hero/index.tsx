@@ -24,38 +24,43 @@ const Hero = () => {
     },
     {
       url: "https://images.unsplash.com/photo-1663505305557-53be07c5b810?q=80&w=2811&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      mobile: "https://images.unsplash.com/photo-1663505305557-53be07c5b810?q=80&w=2811&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
       url: "https://images.unsplash.com/photo-1655438809467-5bb97320cf10?q=80&w=2819&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      mobile:"https://images.unsplash.com/photo-1655438809467-5bb97320cf10?q=80&w=2819&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
     },
   ]
   return (
-    <div className="w-full m-auto bg-gradient-to-br from-black to-orange-700  relative ">
-      <div className=" max-w-8xl m-auto py-8 flex  h-full items-center justify-center">
+    <div className="w-full overflow-hidden m-auto bg-gradient-to-br from-black to-orange-700  relative ">
+      <div className=" max-w-8xl  m-auto py-8 flex  h-full items-center justify-center">
         <Carousel
           className="flex md:w-[85%] lg:w-[90%] sm:w-[70%] w-[95%] h-full items-center justify-center"
           opts={{
             loop: true,
           }}
         >
-          <CarouselContent>
+          <CarouselContent >
             {images.map((img, index) => (
-              <CarouselItem key={index}>
+              <CarouselItem key={index} className="w-[64rem]">
                 <div>
                   <Card className="rounded-md">
-                    <CardContent className="relative flex items-center justify-center w-full h-[70vh] rounded-lg p-0 overflow-hidden ">
+                    <CardContent className="relative flex items-center justify-center w-full h-[70vh] p-0 overflow-hidden ">
                       <div className="w-full h-full hidden sm:block">
-                        <img
+                        <Image
                           src={img.url}
                           alt="dates"
-                          className="h-full w-full xl:object-cover object-fill"
+                          className=" xl:object-cover object-fill rounded-md"
+                          fill
+                          // style={{objectFit:'cover'}}
                         />
                       </div>
                       <div className="w-full h-full block sm:hidden">
-                        <img
+                        <Image
                           src={img.mobile}
                           alt="dates"
-                          className="h-full w-full object-fill"
+                          className=" object-fill  rounded-lg"
+                          fill
                         />
                       </div>
                     </CardContent>

@@ -33,6 +33,11 @@ module.exports = withStoreConfig({
         hostname: "images.unsplash.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: ""
+      }
     ],
   },
    
