@@ -75,7 +75,7 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
       </div>
 
       {selectedPrice ? (
-        <div className="flex flex-col text-ui-fg-base">
+        <div className="flex flex-col text-secondary">
           <span
             className={clsx("text-xl-semi", {
               "text-ui-fg-interactive": selectedPrice.price_type === "sale",
@@ -105,7 +105,7 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
         onClick={addProductToCart}
         disabled={!inStock || !variant}
         variant="primary"
-        className="w-full h-10"
+        className="w-full h-10 disabled:opacity-60 font-bold disabled:font-medium bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-700 text-black disabled:text-gray-800"
       >
         {!loading ? !inStock
           ? "Out of stock"

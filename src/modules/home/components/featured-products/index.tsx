@@ -7,7 +7,6 @@ const FeaturedProducts = ({
   collections: ProductCollection[]
 }) => {
   return (
-    <div className="bg-gradient-to-tr from-black to-orange-700 ">
       <ul className="flex  flex-col ">
         {collections.map((collection) => (
           <li key={collection.id}>
@@ -15,7 +14,7 @@ const FeaturedProducts = ({
           </li>
         ))}
       </ul>
-    </div>
+  
   )
 }
 

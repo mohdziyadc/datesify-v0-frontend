@@ -33,5 +33,9 @@ export default async function ProductPage({ params }: Props) {
     notFound()
   })
 
-  return <ProductTemplate product={products[0]} />
+  return (
+    <div className="bg-gradient-to-br from-black to-orange-700">
+      <ProductTemplate product={products[0]} />
+    </div>
+  )
 }

@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 export default async function Home() {
   const { collections, count } = await getCollectionsList(0, 3)
   return (
-    <>
+    <div className="bg-gradient-to-br from-black to-orange-700">
       <Hero />
       <Suspense fallback={<SkeletonHomepageProducts count={count} />}>
         <FeaturedProducts collections={collections} />
       </Suspense>
-    </>
+    </div>
   )
 }

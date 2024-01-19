@@ -32,7 +32,7 @@ const Hero = () => {
     },
   ]
   return (
-    <div className="w-full overflow-hidden m-auto bg-gradient-to-br from-black to-orange-700  relative ">
+    <div className="w-full overflow-hidden m-auto   relative ">
       <div className=" max-w-8xl  m-auto py-8 flex  h-full items-center justify-center">
         <Carousel
           className="flex md:w-[85%] lg:w-[90%] sm:w-[70%] w-[95%] h-full items-center justify-center"

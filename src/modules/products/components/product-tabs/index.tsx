@@ -30,9 +30,6 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   const [activeTab, setActiveTab] = useState<number>(-1)
 
-  const handleDropdown = (index: number) => {
-    setActiveTab(activeTab === index ? -1 : index)
-  }
 
   return (
     <div className="w-full">
@@ -44,9 +41,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
             headingSize="medium"
             value={tab.label}
             // customTrigger={activeTab === i ? <ChevronUp/> : <ChevronDown/>}
-            // onClick={() => handleDropdown(i)}
-           
-           
+            // onClick={() => handleDropdown(i)
           >
             {tab.component}
           </Accordion.Item>
@@ -58,7 +53,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular text-secondary py-8">
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
