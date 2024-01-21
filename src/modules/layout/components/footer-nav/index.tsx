@@ -11,15 +11,15 @@ const FooterNav = () => {
   const { product_categories } = useProductCategories()
 
   return (
-    <div className="border-t border-ui-border-base w-screen">
+    <div className="mt-4 border-ui-border-base w-screen">
       <div className="content-container flex flex-col">
-        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between py-40">
+        <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between pt-16 ">
           <div>
             <Link
               href="/"
               className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
             >
-              Medusa Store
+              Datesify Store
             </Link>
           </div>
           <div className="text-small-regular grid grid-cols-3 gap-x-10 md:gap-x-16">

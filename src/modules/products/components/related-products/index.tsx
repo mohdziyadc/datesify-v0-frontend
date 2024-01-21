@@ -64,7 +64,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         </p>
       </div>
 
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
+      <ul className="grid grid-flow-col overflow-auto auto-cols-[16rem] sm:auto-cols-[18rem] md:auto-cols-[20rem] gap-x-6">
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />

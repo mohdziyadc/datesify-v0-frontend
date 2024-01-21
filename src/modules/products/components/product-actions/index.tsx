@@ -34,7 +34,6 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
    * Here that synchronous function is addToCart()
    */
   const addProductToCart = async () => {
-
     try {
       setLoading(true)
       await new Promise<void>((resolve) => {
@@ -49,7 +48,6 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
     } finally {
       setLoading(false)
     }
-
   }
 
   return (
@@ -105,13 +103,19 @@ const ProductActionsInner: React.FC<ProductActionsProps> = ({ product }) => {
         onClick={addProductToCart}
         disabled={!inStock || !variant}
         variant="primary"
-        className="w-full h-10 disabled:opacity-60 font-bold disabled:font-medium bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-700 text-black disabled:text-gray-800"
+        className="w-full h-10 disabled:opacity-60 font-bold disabled:font-medium bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-700 text-black text-base disabled:text-gray-800"
       >
-        {!loading ? !inStock
-          ? "Out of stock"
-          : !variant
-            ? "Select variant"
-            : "Add to cart" : <Loader2 className="h-6 w-6 animate-spin" />}
+        {!loading ? (
+          !inStock ? (
+            "Out of stock"
+          ) : !variant ? (
+            "Select variant"
+          ) : (
+            "Add to cart"
+          )
+        ) : (
+          <Loader2 className="h-6 w-6 animate-spin" />
+        )}
       </Button>
     </div>
   )

@@ -22,7 +22,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   return (
     <div className="flex flex-col gap-y-3">
       <span className="text-sm text-secondary">Select {title}</span>
-      <div className="flex flex-wrap justify-between ">
+      <div className="flex flex-wrap gap-4 ">
         {filteredOptions.map((v) => {
           return (
             // <button
@@ -39,13 +39,16 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
             // >
             //   {v}
             // </button>
-            <Button className={clsx("px-6 py-4 bg-secondary  active:opacity-100 outline outline-2 outline-transparent text-primary hover:bg-secondary",
-              {
-                "outline-2  bg-white transition-transform scale-110 opacity-100 outline-yellow-400": v === current
-              })}
-              key={v}
-              onClick={() => updateOption({ [option.id]: v }
+            <Button
+              className={clsx(
+                "px-6 py-4 bg-secondary  active:opacity-100 outline outline-2 outline-transparent text-primary hover:bg-secondary",
+                {
+                  "outline-[3px] outline-orange-600 bg-white transition-transform scale-110 opacity-100 ":
+                    v === current,
+                }
               )}
+              key={v}
+              onClick={() => updateOption({ [option.id]: v })}
             >
               {v}
             </Button>
