@@ -1,5 +1,7 @@
 import { Order } from "@medusajs/medusa"
-import { Heading, Text } from "@medusajs/ui"
+import { Button, Heading, Text } from "@medusajs/ui"
+import { MoveRight } from "lucide-react"
+import Link from "next/link"
 
 type OrderDetailsProps = {
   order: Order
@@ -24,6 +26,13 @@ const OrderDetails = ({ order, showStatus }: OrderDetailsProps) => {
         </span>
         .
       </Text>
+      <div className="flex justify-center">
+        <Link href="/">
+          <Button className="mt-4 mb-2 text-md">
+            Continue Shopping <MoveRight className="w-5 h-5 ml-2" />
+          </Button>
+        </Link>
+      </div>
       <Text className="mt-2">
         Order date: {new Date(order.created_at).toDateString()}
       </Text>
