@@ -20,7 +20,7 @@ export const paymentInfoMap: Record<
   { title: string; icon: JSX.Element }
 > = {
   stripe: {
-    title: "Credit card",
+    title: "Credit and Debit Cards",
     icon: <CreditCard />,
   },
   "stripe-ideal": {
@@ -36,10 +36,10 @@ export const paymentInfoMap: Record<
     icon: <CreditCard />,
   },
   // Add more payment providers here
-  amazon: {
-    title: "Credit cards & Debit Cards",
-    icon: <CreditCard />,
-  },
+  // amazon: {
+  //   title: "Credit cards & Debit Cards",
+  //   icon: <CreditCard />,
+  // },
 }
 
 const Payment = () => {
@@ -122,7 +122,7 @@ const Payment = () => {
     }
   }
 
-  console.log("Payment Sessions: " + JSON.stringify(cart.payment_sessions))
+  // console.log("Payment Sessions: " + JSON.stringify(cart!.payment_sessions))
 
   return (
     <div className="bg-white px-4 small:px-8">
