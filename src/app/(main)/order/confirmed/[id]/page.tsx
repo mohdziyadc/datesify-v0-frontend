@@ -24,5 +24,5 @@ export const metadata: Metadata = {
 export default async function CollectionPage({ params }: Props) {
   const { order } = await getOrder(params.id)
 
-  return <OrderCompletedTemplate order={order} />
+  return <OrderCompletedTemplate order={order}  />
 }

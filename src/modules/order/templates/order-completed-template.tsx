@@ -10,8 +10,10 @@ import OnboardingCta from "@modules/order/components/onboarding-cta"
 import React, { useEffect, useState } from "react"
 import Divider from "@modules/common/components/divider"
 import CartTotals from "@modules/common/components/cart-totals"
-import { Heading } from "@medusajs/ui"
+import { Button, Heading } from "@medusajs/ui"
 import PaymentDetails from "../components/payment-details"
+import Link from "next/link"
+import { MoveRight } from "lucide-react"
 
 type OrderCompletedTemplateProps = {
   order: Order
@@ -39,7 +41,14 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
             <span>Thank you!</span>
             <span>Your order was placed successfully.</span>
           </Heading>
-          <OrderDetails order={order} />
+          <div className="flex justify-center">
+            <Link href="/">
+              <Button className="mt-4 mb-2 text-md">
+                Continue Shopping <MoveRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
+          </div>
+          <OrderDetails order={order} showDetails={false} />
           <Heading level="h2" className="flex flex-row text-3xl-regular">
             Summary
           </Heading>
