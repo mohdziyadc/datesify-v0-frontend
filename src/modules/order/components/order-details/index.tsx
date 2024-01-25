@@ -48,8 +48,8 @@ const OrderDetails = ({
           <>
             <Text>
               Order status:{" "}
-              <span className="text-ui-fg-subtle ">
-                {formatStatus(order.fulfillment_status)}
+              <span className={clsx("text-ui-fg-subtle")}>
+                {order.status === "completed" ? formatStatus(order.status) : formatStatus(order.fulfillment_status)}
               </span>
             </Text>
             <Text>
