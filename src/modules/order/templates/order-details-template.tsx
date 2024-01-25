@@ -7,6 +7,7 @@ import OrderDetails from "@modules/order/components/order-details"
 import OrderSummary from "@modules/order/components/order-summary"
 import ShippingDetails from "@modules/order/components/shipping-details"
 import React from "react"
+import TimelineStepper from "../components/timeline-stepper"
 
 type OrderDetailsTemplateProps = {
   order: Order
@@ -20,6 +21,7 @@ const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
       <div className="content-container flex justify-center">
         <div className="flex flex-col gap-4 max-w-4xl h-full bg-white w-full p-10">
           <OrderDetails order={order} showStatus showDetails />
+          <TimelineStepper order={order} />
           <Items
             items={order.items}
             region={order.region}
