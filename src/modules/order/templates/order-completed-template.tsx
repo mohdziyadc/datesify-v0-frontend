@@ -48,7 +48,7 @@ const OrderCompletedTemplate: React.FC<OrderCompletedTemplateProps> = ({
               </Button>
             </Link>
           </div>
-          <OrderDetails order={order} showDetails={false} />
+          <OrderDetails orderId={order.id} confirmedPage showDetails={false} />
           <Heading level="h2" className="flex flex-row text-3xl-regular">
             Summary
           </Heading>

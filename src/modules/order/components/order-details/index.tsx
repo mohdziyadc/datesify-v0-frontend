@@ -10,12 +10,14 @@ type OrderDetailsProps = {
   orderId: string
   showStatus?: boolean
   showDetails: boolean
+  confirmedPage?: boolean
 }
 
 const OrderDetails = ({
   orderId,
   showStatus,
   showDetails,
+  confirmedPage,
 }: OrderDetailsProps) => {
   // const items = order.items.reduce((acc, i) => acc + i.quantity, 0)
 
@@ -77,7 +79,7 @@ const OrderDetails = ({
           </>
         )}
       </div>
-      <TimelineStepper order={order} />
+      {!confirmedPage && <TimelineStepper order={order} />}
     </div>
   )
 }
