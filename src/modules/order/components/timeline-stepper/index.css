@@ -22,7 +22,11 @@
 }
 
 .completed .step {
-  @apply bg-black border-4 border-rose-400 
+  @apply bg-black border-4 border-rose-400;
+}
+
+.completed:not(:last-child)::before {
+  @apply bg-black;
 }
 
 /* .complete-line:not(:nth-child(2))::before {

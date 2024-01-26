@@ -1,26 +1,40 @@
 import { Order } from "@medusajs/medusa"
 import { Button, Heading, Text } from "@medusajs/ui"
 import clsx from "clsx"
-import { MoveRight } from "lucide-react"
+import { Loader2, MoveRight } from "lucide-react"
 import Link from "next/link"
+import TimelineStepper from "../timeline-stepper"
+import { useOrder } from "medusa-react"
 
 type OrderDetailsProps = {
-  order: Order
+  orderId: string
   showStatus?: boolean
   showDetails: boolean
 }
 
 const OrderDetails = ({
-  order,
+  orderId,
   showStatus,
   showDetails,
 }: OrderDetailsProps) => {
-  const items = order.items.reduce((acc, i) => acc + i.quantity, 0)
+  // const items = order.items.reduce((acc, i) => acc + i.quantity, 0)
 
+  const { order, isLoading } = useOrder(orderId)
   const formatStatus = (str: string) => {
     const formatted = str.split("_").join(" ")
 
     return formatted.slice(0, 1).toUpperCase() + formatted.slice(1)
+  }
+  if (!order) {
+    return (
+      <div className="flex justify-center items-center w-full my-8">
+        {isLoading ? (
+          <Loader2 className="h-6 w-6 animate-spin" />
+        ) : (
+          <p>An error occured. Please refresh</p>
+        )}
+      </div>
+    )
   }
 
   return (
@@ -49,7 +63,9 @@ const OrderDetails = ({
             <Text>
               Order status:{" "}
               <span className={clsx("text-ui-fg-subtle")}>
-                {order.status === "completed" ? formatStatus(order.status) : formatStatus(order.fulfillment_status)}
+                {order.status === "completed"
+                  ? formatStatus(order.status)
+                  : formatStatus(order.fulfillment_status)}
               </span>
             </Text>
             <Text>
@@ -61,6 +77,7 @@ const OrderDetails = ({
           </>
         )}
       </div>
+      <TimelineStepper order={order} />
     </div>
   )
 }
