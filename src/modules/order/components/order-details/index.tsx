@@ -17,7 +17,6 @@ const OrderDetails = ({
   orderId,
   showStatus,
   showDetails,
-  confirmedPage,
 }: OrderDetailsProps) => {
   // const items = order.items.reduce((acc, i) => acc + i.quantity, 0)
 
@@ -79,7 +78,7 @@ const OrderDetails = ({
           </>
         )}
       </div>
-      {!confirmedPage && <TimelineStepper order={order} />}
+      {showDetails && <TimelineStepper order={order} />}
     </div>
   )
 }

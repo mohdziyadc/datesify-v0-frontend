@@ -8,14 +8,56 @@ type Props = {
 }
 
 const TimelineStepper = ({ order }: Props) => {
-  const steps = ["Confirmed", "Shipped", "Out for Delivery", "Delivered"]
-  const [orderCompleted, setOrderCompleted] = useState<boolean>(false)
+  const steps = ["Payment Confirmed", "Order Confirmed", "Shipped", "Delivered"]
+  const [finishedSteps, setFinishedSteps] = useState([
+    false,
+    false,
+    false,
+    false,
+  ])
 
   useEffect(() => {
-    if (order.status === "completed") {
-      setOrderCompleted(true)
+    if (order.payment_status === "captured") {
+      setFinishedSteps((prevFinishedSteps) => {
+        const updatedFinishedSteps = [...prevFinishedSteps]
+        updatedFinishedSteps[0] = true
+        return updatedFinishedSteps
+      })
     }
-  }, [order.status])
+
+    /**
+     * The admin fulfillment flow ensures that the order cannot be
+     * shipped before updating the order's fulfullment status to be fulfilled
+     */
+    if (order.fulfillment_status === "fulfilled") {
+      setFinishedSteps((prevFinishedSteps) => {
+        const updatedFinishedSteps = [...prevFinishedSteps]
+        updatedFinishedSteps[1] = true
+        return updatedFinishedSteps
+      })
+    }
+
+    if (order.fulfillment_status === "shipped") {
+      setFinishedSteps((prevFinishedSteps) => {
+        const updatedFinishedSteps = [...prevFinishedSteps]
+        for (let i = 0; i < 2; i++) {
+          updatedFinishedSteps[i] = true
+        }
+        updatedFinishedSteps[2] = true
+        return updatedFinishedSteps
+      })
+    }
+
+    if (order.status === "completed") {
+      setFinishedSteps((prevFinishedSteps) => {
+        const updateFinishedSteps = [...prevFinishedSteps]
+        for (let i = 0; i < updateFinishedSteps.length; i++) {
+          updateFinishedSteps[i] = true
+        }
+        return updateFinishedSteps
+      })
+    }
+  }, [order.fulfillment_status, order.payment_status, order.status])
 
   return (
     <>
@@ -25,7 +67,7 @@ const TimelineStepper = ({ order }: Props) => {
           <div
             key={idx}
             className={clsx("step-item flex flex-col gap-2 w-48", {
-              completed: idx < 2,
+              completed: finishedSteps[idx],
             })}
           >
             <div className="w-6 h-6 z-10 step rounded-full shadow-2xl  bg-gray-300"></div>
@@ -34,12 +76,12 @@ const TimelineStepper = ({ order }: Props) => {
         ))}
       </div>
       {/* Small Screens */}
-      <div className="sm:hidden flex flex-col my-4 justify-start items-center">
+      <div className="sm:hidden flex my-10 flex-col justify-center  w-screen items-center">
         {steps.map((step, idx) => (
           <div
             key={idx}
-            className={clsx("flex step-item-mobile flex-row h-28 w-36 gap-3", {
-              completed: idx < 2,
+            className={clsx("flex step-item-mobile flex-row h-28 w-48 gap-3", {
+              completed: finishedSteps[idx] === true,
             })}
           >
             <div className="w-6 h-6 z-10 step rounded-full  bg-gray-300"></div>
