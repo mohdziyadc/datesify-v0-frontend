@@ -22,7 +22,7 @@
 }
 
 .completed .step {
-  @apply bg-black border-4 border-rose-400;
+  @apply bg-black outline outline-[3px] outline-sky-400;
 }
 
 .completed:not(:last-child)::before {

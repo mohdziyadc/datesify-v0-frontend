@@ -2,6 +2,7 @@ import { Order } from "@medusajs/medusa"
 import React, { useEffect, useState } from "react"
 import "./index.css"
 import clsx from "clsx"
+import { Check } from "lucide-react"
 
 type Props = {
   order: Order
@@ -70,7 +71,9 @@ const TimelineStepper = ({ order }: Props) => {
               completed: finishedSteps[idx],
             })}
           >
-            <div className="w-6 h-6 z-10 step rounded-full shadow-2xl  bg-gray-300"></div>
+            <div className="w-7 h-7 z-10 flex justify-center items-center step rounded-full shadow-2xl  bg-gray-300">
+              {finishedSteps[idx] && <Check className="w-5 h-5 text-white" />}
+            </div>
             <div className="text-sm">{step}</div>
           </div>
         ))}
@@ -84,7 +87,9 @@ const TimelineStepper = ({ order }: Props) => {
               completed: finishedSteps[idx] === true,
             })}
           >
-            <div className="w-6 h-6 z-10 step rounded-full  bg-gray-300"></div>
+            <div className="flex justify-center items-center w-6 h-6 z-10 step rounded-full  bg-gray-300">
+              {finishedSteps[idx] && <Check className="w-4 h-4 text-white" />}
+            </div>
             <div className="text-sm">{step}</div>
           </div>
         ))}
