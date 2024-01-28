@@ -4,6 +4,7 @@ import { useMobileMenu } from "@lib/context/mobile-menu-context"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import Hamburger from "@modules/common/components/hamburger"
 import CartDropdown from "@modules/layout/components/cart-dropdown"
+import CountrySelect from "@modules/layout/components/country-select"
 import DropdownMenu from "@modules/layout/components/dropdown-menu"
 import SideMenu from "@modules/layout/components/side-menu"
 import MobileMenu from "@modules/mobile-menu/templates"
@@ -17,6 +18,8 @@ const Nav = () => {
     close: searchModalClose,
     open: searchModalOpen,
   } = useToggleState()
+
+  const toggleState = useToggleState()
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -40,7 +43,7 @@ const Nav = () => {
             </Link>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+          <div className="flex items-center gap-x-6  h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               {process.env.FEATURE_SEARCH_ENABLED && (
                 <DesktopSearchModal
@@ -54,6 +57,13 @@ const Nav = () => {
               </Link>
             </div>
             <CartDropdown />
+            <div
+              onMouseEnter={toggleState.open}
+              onMouseLeave={toggleState.close}
+              className="sm:flex hidden"
+            >
+              <CountrySelect toggleState={toggleState} displayInNavbar />
+            </div>
           </div>
         </nav>
         <MobileMenu />

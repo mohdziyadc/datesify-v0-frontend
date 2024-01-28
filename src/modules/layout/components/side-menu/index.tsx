@@ -87,7 +87,10 @@ const SideMenu = ({ searchModalOpen }: { searchModalOpen: () => void }) => {
                         onMouseEnter={toggleState.open}
                         onMouseLeave={toggleState.close}
                       >
-                        <CountrySelect toggleState={toggleState} />
+                        <CountrySelect
+                          toggleState={toggleState}
+                          displayInNavbar={false}
+                        />
                         <ArrowRightMini
                           className={clx(
                             "transition-transform duration-150",

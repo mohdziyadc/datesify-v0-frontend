@@ -4,6 +4,7 @@ import { Listbox, Transition } from "@headlessui/react"
 import { useStore } from "@lib/context/store-context"
 import useToggleState, { StateType } from "@lib/hooks/use-toggle-state"
 import { revalidateTags } from "app/actions"
+import clsx from "clsx"
 import { useRegions } from "medusa-react"
 import { Fragment, useEffect, useMemo, useState } from "react"
 import ReactCountryFlag from "react-country-flag"
@@ -16,9 +17,13 @@ type CountryOption = {
 
 type CountrySelectProps = {
   toggleState: StateType
+  displayInNavbar: boolean
 }
 
-const CountrySelect = ({ toggleState }: CountrySelectProps) => {
+const CountrySelect = ({
+  toggleState,
+  displayInNavbar,
+}: CountrySelectProps) => {
   const { countryCode, setRegion } = useStore()
   const { regions } = useRegions()
   const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
@@ -36,7 +41,6 @@ const CountrySelect = ({ toggleState }: CountrySelectProps) => {
       })
       .flat()
   }, [regions])
-
   useEffect(() => {
     if (countryCode) {
       const option = options?.find((o) => o.country === countryCode)
@@ -62,7 +66,7 @@ const CountrySelect = ({ toggleState }: CountrySelectProps) => {
       >
         <Listbox.Button className="py-1 w-full">
           <div className="txt-compact-small flex items-start gap-x-2">
-            <span>Shipping to:</span>
+            {!displayInNavbar && <span>Shipping to:</span>}
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
                 <ReactCountryFlag
@@ -73,12 +77,16 @@ const CountrySelect = ({ toggleState }: CountrySelectProps) => {
                   }}
                   countryCode={current.country}
                 />
-                {current.label}
+                {current.country.toLocaleUpperCase()}
               </span>
             )}
           </div>
         </Listbox.Button>
-        <div className="flex relative w-full min-w-[320px]">
+        <div
+          className={clsx("flex relative w-full min-w-[320px]", {
+            " min-w-fit": displayInNavbar,
+          })}
+        >
           <Transition
             show={state}
             as={Fragment}
@@ -87,7 +95,13 @@ const CountrySelect = ({ toggleState }: CountrySelectProps) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full"
+              className={clsx(
+                "absolute left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full",
+                {
+                  "-bottom-[calc(100%-36px)]": !displayInNavbar,
+                  "min-w-[150px] mt-2 translate-x-[20%]": displayInNavbar,
+                }
+              )}
               static
             >
               {options?.map((o, index) => {
