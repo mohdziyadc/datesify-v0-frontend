@@ -77,7 +77,9 @@ const CountrySelect = ({
                   }}
                   countryCode={current.country}
                 />
-                {current.country.toLocaleUpperCase()}
+                {displayInNavbar
+                  ? current.country.toLocaleUpperCase()
+                  : current.label}
               </span>
             )}
           </div>
