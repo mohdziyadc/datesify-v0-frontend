@@ -13,14 +13,13 @@ const FooterNav = () => {
 
   return (
     <>
-      <Divider />
-      <div className="mt-2 px-8 border-ui-border-base w-screen">
+      <div className="mt-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-gray-200 via-gray-400 to-gray-600 px-8 pb-8 border-ui-border-base w-screen">
         <div className="content-container flex flex-col">
           <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between pt-8 ">
             <div>
               <Link
                 href="/"
-                className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+                className="txt-compact-xlarge-plus text-black hover:text-ui-fg-base uppercase"
               >
                 Datesify Store
               </Link>
@@ -28,7 +27,7 @@ const FooterNav = () => {
             <div className="text-small-regular grid grid-cols-3 gap-x-10 md:gap-x-16">
               {product_categories && (
                 <div className="flex flex-col gap-y-2">
-                  <span className="txt-small-plus txt-ui-fg-base">
+                  <span className="txt-small-plus font-bold txt-ui-fg-base">
                     Categories
                   </span>
                   <ul className="grid grid-cols-1 gap-2">
@@ -46,7 +45,7 @@ const FooterNav = () => {
 
                       return (
                         <li
-                          className="flex flex-col gap-2 text-ui-fg-subtle txt-small"
+                          className="flex flex-col gap-2 text-primary/70 txt-small"
                           key={c.id}
                         >
                           <Link
@@ -81,12 +80,10 @@ const FooterNav = () => {
               )}
               {collections && (
                 <div className="flex flex-col gap-y-2">
-                  <span className="txt-small-plus txt-ui-fg-base">
-                    Collections
-                  </span>
+                  <span className="txt-small-plus font-bold">Collections</span>
                   <ul
                     className={clsx(
-                      "grid grid-cols-1 gap-2 text-ui-fg-subtle txt-small",
+                      "grid grid-cols-1 gap-2 text-primary/70 txt-small",
                       {
                         "grid-cols-2": (collections?.length || 0) > 3,
                       }
@@ -113,6 +110,11 @@ const FooterNav = () => {
           </Text>
           <MedusaCTA />
         </div> */}
+        </div>
+        <div className="flex justify-center -mb-6 items-center">
+          <Text className="txt-compact-small">
+            © {new Date().getFullYear()} Datesify Store. All rights reserved.
+          </Text>
         </div>
       </div>
     </>
