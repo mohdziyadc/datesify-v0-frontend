@@ -21,7 +21,7 @@ type ProductTemplateProps = {
 const ProductTemplate: React.FC<ProductTemplateProps> = ({ handle }) => {
   const [isOnboarding, setIsOnboarding] = useState<boolean>(false)
 
-  const { products, isLoading } = useProducts({ handle: handle })
+  const { products, isLoading, isError } = useProducts({ handle: handle })
 
   const infoRef = useRef<HTMLDivElement>(null)
 
@@ -60,6 +60,14 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ handle }) => {
       {isLoading && (
         <div className="flex justify-center items-center h-screen">
           <Loader2 className="h-8 w-8 animate-spin text-white" />
+        </div>
+      )}
+
+      {!isError && (
+        <div className="flex justify-center items-center h-screen">
+          <p className="text-white">
+            An error occured while fetching the product. Please try again
+          </p>
         </div>
       )}
     </div>
