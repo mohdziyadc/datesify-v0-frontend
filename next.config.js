@@ -36,12 +36,15 @@ module.exports = withStoreConfig({
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        port: ""
-      }
+        port: "",
+      },
+      {
+        protocol: "http",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
     ],
   },
-   
 })
-
 
 console.log("next.config.js", JSON.stringify(module.exports, null, 2))
