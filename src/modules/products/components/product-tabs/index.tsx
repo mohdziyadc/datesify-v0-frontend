@@ -51,6 +51,12 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+  const formatCountryCode = (countryCode: string) : string => {
+    const regionNames = new Intl.DisplayNames(['en'], {type:'region'})
+    const country = regionNames.of(countryCode)
+    return country ?? ""
+
+  }
   return (
     <div className="text-small-regular text-secondary py-8">
       <div className="grid grid-cols-2 gap-x-8">
@@ -61,7 +67,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           </div>
           <div>
             <span className="font-semibold">Country of origin</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
+            <p>{product.origin_country ? formatCountryCode(product.origin_country) : "-"}</p>
           </div>
           <div>
             <span className="font-semibold">Type</span>
