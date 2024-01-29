@@ -11,13 +11,17 @@ import MobileActions from "@modules/products/components/mobile-actions"
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import ProductActions from "../components/product-actions"
+import { useProducts } from "medusa-react"
+import { Loader2 } from "lucide-react"
 
 type ProductTemplateProps = {
-  product: PricedProduct
+  handle: string
 }
 
-const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
+const ProductTemplate: React.FC<ProductTemplateProps> = ({ handle }) => {
   const [isOnboarding, setIsOnboarding] = useState<boolean>(false)
+
+  const { products, isLoading } = useProducts({ handle: handle })
 
   const infoRef = useRef<HTMLDivElement>(null)
 
@@ -27,29 +31,38 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
     const onboarding = window.sessionStorage.getItem("onboarding")
     setIsOnboarding(onboarding === "true")
   }, [])
-  return (
-    <ProductProvider product={product}>
+
+  return products ? (
+    <ProductProvider product={products[0]}>
       <div className="content-container flex flex-col small:flex-row small:items-start py-6 px-6 relative">
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
+          <ProductInfo product={products[0]} />
+          <ProductTabs product={products[0]} />
         </div>
         <div className="block w-full relative">
-          <ImageGallery images={product?.images || []} />
+          <ImageGallery images={products[0]?.images || []} />
         </div>
         <div
           className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12"
           ref={infoRef}
         >
           {isOnboarding && <ProductOnboardingCta />}
-          <ProductActions product={product} />
+          <ProductActions product={products[0]} />
         </div>
       </div>
       <div className="content-container   px-6 pb-16 small:px-8 ">
-        <RelatedProducts product={product} />
+        <RelatedProducts product={products[0]} />
       </div>
-      <MobileActions product={product} show={!inView} />
+      <MobileActions product={products[0]} show={!inView} />
     </ProductProvider>
+  ) : (
+    <div>
+      {isLoading && (
+        <div className="flex justify-center items-center h-screen">
+          <Loader2 className="h-8 w-8 animate-spin text-white" />
+        </div>
+      )}
+    </div>
   )
 }
 
