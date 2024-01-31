@@ -60,7 +60,7 @@ const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
 
   return (
     <div className="content-container py-6 bg-gradient-to-br from-black to-orange-700">
-      <div className="mb-8 text-white text-2xl-semi">
+      <div className="mb-8 text-secondary text-2xl-semi">
         <h1>{collection.title}</h1>
       </div>
       {isLoading ? (

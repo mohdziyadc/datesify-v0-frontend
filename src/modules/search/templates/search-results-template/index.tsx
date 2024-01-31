@@ -24,17 +24,17 @@ const SearchResultsTemplate = ({ query, hits }: SearchResultsTemplateProps) => {
   }, [hits])
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-black to-orange-700">
       <div className="flex justify-between border-b w-full py-6 px-8 small:px-14 items-center">
         <div className="flex flex-col items-start">
-          <Text className="text-ui-fg-muted">Search Results for:</Text>
-          <Heading>
+          <Text className="text-secondary">Search Results for:</Text>
+          <Heading className="text-secondary">
             {query} ({hits.length})
           </Heading>
         </div>
         <Link
           href="/store"
-          className="txt-medium text-ui-fg-subtle hover:text-ui-fg-base"
+          className="txt-medium text-secondary/70 hover:text-secondary"
         >
           Clear
         </Link>
