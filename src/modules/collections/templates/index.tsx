@@ -11,6 +11,7 @@ import { useCart } from "medusa-react"
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { ProductCollection } from "@medusajs/medusa"
+import { Loader2 } from "lucide-react"
 
 const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
   collection,
@@ -24,6 +25,7 @@ const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
     fetchNextPage,
     isFetchingNextPage,
     refetch,
+    isLoading,
   } = useInfiniteQuery(
     [`get_collection_products`, collection.handle, cart?.id],
     ({ pageParam }) =>
@@ -57,29 +59,37 @@ const CollectionTemplate: React.FC<{ collection: ProductCollection }> = ({
   }, [inView, hasNextPage])
 
   return (
-    <div className="content-container py-6">
-      <div className="mb-8 text-2xl-semi">
+    <div className="content-container py-6 bg-gradient-to-br from-black to-orange-700">
+      <div className="mb-8 text-white text-2xl-semi">
         <h1>{collection.title}</h1>
       </div>
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-        {previews.map((p) => (
-          <li key={p.id}>
-            <ProductPreview {...p} />
-          </li>
-        ))}
-        {isFetchingNextPage &&
-          repeat(getNumberOfSkeletons(infiniteData?.pages)).map((index) => (
-            <li key={index}>
-              <SkeletonProductPreview />
-            </li>
-          ))}
-      </ul>
-      <div
-        className="py-16 flex justify-center items-center text-small-regular text-gray-700"
-        ref={ref}
-      >
-        <span ref={ref}></span>
-      </div>
+      {isLoading ? (
+        <div className="w-full flex justify-center items-center h-[70vh]">
+          <Loader2 className="h-8 w-8 animate-spin text-white" />
+        </div>
+      ) : (
+        <>
+          <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
+            {previews.map((p) => (
+              <li key={p.id}>
+                <ProductPreview {...p} />
+              </li>
+            ))}
+            {isFetchingNextPage &&
+              repeat(getNumberOfSkeletons(infiniteData?.pages)).map((index) => (
+                <li key={index}>
+                  <SkeletonProductPreview />
+                </li>
+              ))}
+          </ul>
+          <div
+            className="py-16 flex justify-center items-center text-small-regular text-gray-700"
+            ref={ref}
+          >
+            <span ref={ref}></span>
+          </div>
+        </>
+      )}
     </div>
   )
 }
