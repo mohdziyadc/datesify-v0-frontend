@@ -46,3 +46,6 @@ node_modules
 .yarn
 .swc
 dump.rdb
+
+#ignoring the api folder as we aren't using medusa's serverless modules
+/src/app/api
