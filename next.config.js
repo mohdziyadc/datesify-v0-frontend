@@ -35,11 +35,11 @@ module.exports = withStoreConfig({
       },
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "datesify-storage.s3.ap-south-1.amazonaws.com",
         port: "",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "res.cloudinary.com",
         port: "",
       },
